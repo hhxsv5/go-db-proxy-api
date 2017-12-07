@@ -1,20 +1,12 @@
 package main
 
 import (
-	"github.com/hhxsv5/go-db-proxy-api/drivers"
 	"fmt"
+	"github.com/hhxsv5/go-db-proxy-api/models"
 )
 
 func main() {
-	m := drivers.NewMySQL("user:password@tcp(120.0.0.1:3306)/dbname")
-	err := m.Open()
-	if err != nil {
-		panic(err.Error())
-	}
-	defer m.Close()
-
-	rows := m.Query("select id,cellphone from user order by id desc limit 5")
-
-	fmt.Println(rows)
-
+	user := models.CreateUser("18780207350")
+	fmt.Println(user)
+	fmt.Printf("%p", user)
 }

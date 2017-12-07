@@ -1,0 +1,23 @@
+[connections]
+
+[connections.default]
+driver = "mysql"
+dsn = "root:123456@tcp(127.0.0.1:3306)/test"
+log = true
+loglevel = 0
+logfile = "./sql.log"
+
+[connections.db1]
+driver = "sqlite3"
+dsn = "./test.db"
+log = false
+loglevel = 0
+# empty logfile means log into console
+logfile = ""
+
+[connections.db2]
+driver = "mysql"
+dsn = "root:123456@tcp(127.0.0.1:3306)/db2"
+log = false
+loglevel = 0
+logfile = "./sql.log"
