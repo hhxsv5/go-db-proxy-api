@@ -2,6 +2,9 @@ package main
 
 import (
 	"github.com/hhxsv5/go-db-proxy-api"
+	"time"
+	"io"
+	"net/http"
 )
 
 func main() {
@@ -9,6 +12,13 @@ func main() {
 	//fmt.Println(user)
 	//fmt.Printf("%p", user)
 
-	p := godpa.NewProxy()
+	var handlers = map[string]func(w http.ResponseWriter, r *http.Request){}
+	handlers["/"] = func(w http.ResponseWriter, r *http.Request) {
+		response := "Hello http server by golang!\n"
+		response += "Now: " + time.Now().String() + "\n"
+		io.WriteString(w, response)
+	}
+
+	p := godpa.NewProxy(handlers)
 	p.Run()
 }
