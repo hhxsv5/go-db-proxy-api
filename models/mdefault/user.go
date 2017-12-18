@@ -1,4 +1,4 @@
-package models
+package mdefault
 
 import (
 	"github.com/go-xorm/builder"
@@ -14,7 +14,7 @@ type User struct {
 func CreateUser(cellphone string) *User {
 	user := new(User)
 	user.Cellphone = cellphone
-	_, err := Orm.Insert(user)
+	_, err := orm.Insert(user)
 	if err != nil {
 		return nil
 	}
@@ -23,12 +23,12 @@ func CreateUser(cellphone string) *User {
 
 func GetUserById(id uint32) *User {
 	var user *User
-	Orm.Where("id=?", id).Limit(1, 0).Get(user)
+	orm.Where("id=?", id).Limit(1, 0).Get(user)
 	return user
 }
 
 func GetUsersByIds(ids []uint32) *[]User {
 	var users *[]User
-	Orm.Where(builder.In("id", ids)).Find(users)
+	orm.Where(builder.In("id", ids)).Find(users)
 	return users
 }
