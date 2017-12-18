@@ -1,12 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"github.com/hhxsv5/go-db-proxy-api/models/mdefault"
+	"github.com/hhxsv5/go-db-proxy-api"
 )
 
 func main() {
-	user := mdefault.CreateUser("18780207350")
-	fmt.Println(user)
-	fmt.Printf("%p", user)
+	//user := mydefault.CreateUser("18780207350")
+	//fmt.Println(user)
+	//fmt.Printf("%p", user)
+
+	p := godpa.NewProxy()
+	p.Run()
 }

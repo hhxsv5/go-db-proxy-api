@@ -1,4 +1,4 @@
-package mdb1
+package mydefault
 
 import (
 	"github.com/go-xorm/builder"

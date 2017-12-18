@@ -1,4 +1,4 @@
-package mdefault
+package db2
 
 import (
 	"github.com/go-xorm/builder"

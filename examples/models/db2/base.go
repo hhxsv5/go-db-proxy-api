@@ -1,17 +1,17 @@
-package mdb1
+package db2
 
 import (
 	_ "github.com/go-sql-driver/mysql" //remember: import xxx driver to init
-	"github.com/hhxsv5/go-db-proxy-api/models"
-	"github.com/hhxsv5/go-db-proxy-api/core"
+	"github.com/hhxsv5/go-db-proxy-api/db/models"
+	mydb "github.com/hhxsv5/go-db-proxy-api/db"
 	"github.com/go-xorm/xorm"
 )
 
-//db1 connection in file db.toml
-const conn = "db1"
+//db2 connection in file db.toml
+const conn = "db2"
 
 var (
-	db  *core.DB
+	db  *mydb.DB
 	orm *xorm.Engine
 )
 
