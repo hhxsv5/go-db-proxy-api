@@ -1,10 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"github.com/hhxsv5/go-db-proxy-api/examples/models/mydefault"
-	"io"
 	"github.com/hhxsv5/go-db-proxy-api"
+	"github.com/hhxsv5/go-db-proxy-api/examples/models/mydefault"
+	"fmt"
+	"io"
 	"net/http"
 	"time"
 )
@@ -27,7 +27,7 @@ func main() {
 		for i, u := range users {
 			it = time.Unix(u.InsertTime, 0)
 			mt = time.Unix(u.ModifyTime, 0)
-			rsp += fmt.Sprintf("%d: %d, %s, %s, %s\n", i, u.Id, u.Cellphone, it.Format("2006-01-02 15:04:05"), mt.Format("2006-01-02 15:04:05"))
+			rsp += fmt.Sprintf("%d: %d, %s, %s, %s\n", i, u.Id, u.Cellphone, it.Format(time.RFC3339), mt.Format("2006-01-02 15:04:05"))
 		}
 
 		io.WriteString(w, rsp)
