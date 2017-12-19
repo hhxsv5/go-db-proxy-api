@@ -1,22 +1,36 @@
 package main
 
 import (
-	"github.com/hhxsv5/go-db-proxy-api"
-	"time"
+	"fmt"
+	"github.com/hhxsv5/go-db-proxy-api/examples/models/mydefault"
 	"io"
+	"github.com/hhxsv5/go-db-proxy-api"
 	"net/http"
+	"time"
 )
 
 func main() {
-	//user := mydefault.CreateUser("18780207350")
-	//fmt.Println(user)
-	//fmt.Printf("%p", user)
-
 	var handlers = map[string]func(w http.ResponseWriter, r *http.Request){}
 	handlers["/"] = func(w http.ResponseWriter, r *http.Request) {
-		response := "Hello http server by golang!\n"
-		response += "Now: " + time.Now().String() + "\n"
-		io.WriteString(w, response)
+		//rand.Seed(time.Now().UnixNano())
+		//cellphone := "1878020" + strconv.Itoa(int(1000+rand.Int31n(9999-1000)))
+		//mydefault.CreateUser(cellphone)
+
+		users := mydefault.GetUsersByIds([]uint64{})
+
+		var (
+			rsp string
+			it  time.Time
+			mt  time.Time
+		)
+
+		for i, u := range users {
+			it = time.Unix(u.InsertTime, 0)
+			mt = time.Unix(u.ModifyTime, 0)
+			rsp += fmt.Sprintf("%d: %d, %s, %s, %s\n", i, u.Id, u.Cellphone, it.Format("2006-01-02 15:04:05"), mt.Format("2006-01-02 15:04:05"))
+		}
+
+		io.WriteString(w, rsp)
 	}
 
 	p := godpa.NewProxy(handlers)

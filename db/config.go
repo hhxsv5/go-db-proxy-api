@@ -13,6 +13,7 @@ type Connection struct {
 	Log      bool
 	LogLevel int
 	LogFile  string
+	Timezone string
 }
 
 type Connections struct {

@@ -6,6 +6,7 @@ dsn = "root:123456@tcp(127.0.0.1:3306)/test"
 log = true
 loglevel = 0
 logfile = "./sql.log"
+timezone = "Asia/Shanghai"
 
 [connections.db1]
 driver = "sqlite3"
@@ -21,3 +22,4 @@ dsn = "root:123456@tcp(127.0.0.1:3306)/db2"
 log = false
 loglevel = 0
 logfile = "./sql.log"
+timezone = "Asia/Shanghai"

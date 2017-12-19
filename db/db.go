@@ -4,6 +4,7 @@ import (
 	"github.com/go-xorm/xorm"
 	"os"
 	"github.com/go-xorm/core"
+	"time"
 )
 
 type DB struct {
@@ -23,13 +24,17 @@ func NewDB(conn string) *DB {
 
 	if cfg.Log {
 		//log into file
-		if len(cfg.LogFile) > 0 {
+		if cfg.LogFile != "" {
 			f, err := os.OpenFile(cfg.LogFile, os.O_WRONLY|os.O_CREATE|os.O_APPEND, 0666)
 			if err != nil {
 				panic(err)
 			}
 			db.Engine.SetLogger(xorm.NewSimpleLogger(f))
 		} //else log into console
+
+		if cfg.Timezone != "" {
+			db.Engine.TZLocation, _ = time.LoadLocation(cfg.Timezone)
+		}
 
 		db.Engine.ShowSQL(true)
 		db.Engine.ShowExecTime(true)
