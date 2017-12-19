@@ -1,7 +1,7 @@
-Database Proxy
-==============
+Database Proxy API
+==================
 
-A simple API is used to connect the database which is in private/intranet network.
+A simple http API is used to connect the database which is in private/intranet network.
 
 ## Usage
 
@@ -49,6 +49,7 @@ p := godpa.NewProxy(handlers)
 p.Run()
 ```
 
+## Thanks [ORM](https://github.com/go-xorm/xorm)
 
 ## License
 
